@@ -23,6 +23,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
+#include <typeinfo>
 
 #include "Model.h"
 #include "Sample.h"
@@ -37,6 +38,7 @@
 
 #include "time.h"
 #include "Trajectory.h"
+#include "SpoilerPulse.h"
 
 /**************************************************/
 Model::Model() : m_tx_coil_array(0), m_sample(0), m_rx_coil_array(0), m_concat_sequence(0) {
@@ -167,7 +169,11 @@ void Model::RunSequenceTree (double& dTimeShift, long& lIndexShift, Module* modu
 			if (m_world->SpinNumber == 0)
 				if (p->GetAxis() == AXIS_RF)
 					((RFPulse*) p)->SetCoilArray (m_tx_coil_array);
-		}
+
+            // Test SpoilerPulse
+            if (SpoilerPulse* dc = dynamic_cast<SpoilerPulse*>(p))
+                std::cout << "We called SpoilerPulse! :) " << typeid(dc).name() << std::endl;
+        }
 
 
 		//temporary storage
