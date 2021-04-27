@@ -167,6 +167,10 @@ void Model::RunSequenceTree (double& dTimeShift, long& lIndexShift, Module* modu
 			if (m_world->SpinNumber == 0)
 				if (p->GetAxis() == AXIS_RF)
 					((RFPulse*) p)->SetCoilArray (m_tx_coil_array);
+
+            // Test SpoilerPulse
+            if (SpoilerPulse* dc = dynamic_cast<SpoilerPulse*>(module))
+                std::cout << "We called SpoilerPulse! :)\n";
 		}
 
 

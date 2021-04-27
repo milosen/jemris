@@ -31,7 +31,7 @@ list (APPEND CORE_SRC AnalyticCoil.cpp AnalyticCoil.h
   Sequence.cpp Sequence.h SequenceTree.cpp SequenceTree.h Signal.cpp
   Signal.h SimpleIO.h SimpleIO.cpp Simulator.cpp Simulator.h
   SincRFPulse.cpp SincRFPulse.h SpiralGradPulse.cpp SpiralGradPulse.h
-  StrX.cpp StrX.h TPOI.cpp TPOI.h Trajectory.cpp Trajectory.h
+  SpoilerPulse.cpp SpoilerPulse.h StrX.cpp StrX.h TPOI.cpp TPOI.h Trajectory.cpp Trajectory.h
   Trajectory1D.cpp Trajectory1D.h TrajectoryDiffusion.cpp
   TrajectoryDiffusion.h TrajectoryEmpty.h TrajectoryInterface.cpp
   TrajectoryInterface.h TrajectoryMotion.cpp TrajectoryMotion.h

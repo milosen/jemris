@@ -36,6 +36,7 @@
 #include "ConcatSequence.h"
 #include "Container.h"
 #include "ContainerSequence.h"
+#include "SpoilerPulse.h"
 
 using namespace std;
 

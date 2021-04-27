@@ -45,6 +45,7 @@
 #include "Container.h"
 #include "AtomicSequence.h"
 #include "DelayAtomicSequence.h"
+#include "SpoilerPulse.h"
 
 #include "StrX.h"
 
@@ -78,7 +79,7 @@ ModulePrototypeFactory::ModulePrototypeFactory () {
 	m_Clonables.insert( pair<string,Module*>( "CONTAINER",           new Container           () ));
 	m_Clonables.insert( pair<string,Module*>( "ATOMICSEQUENCE",      new AtomicSequence      () ));
 	m_Clonables.insert( pair<string,Module*>( "DELAYATOMICSEQUENCE", new DelayAtomicSequence () ));
-
+    m_Clonables.insert( pair<string,Module*>( "SPOILERPULSE",        new SpoilerPulse        () ));
 }
 
 /***********************************************************/
