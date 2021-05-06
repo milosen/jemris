@@ -1,9 +1,9 @@
 #ifndef SPOILERPULSE_H
 #define SPOILERPULSE_H
 
-#include "GradPulse.h"
+#include "TrapGradPulse.h"
 
-class SpoilerPulse : public GradPulse {
+class SpoilerPulse : public TrapGradPulse {
  public:
     // Default constructor
     SpoilerPulse() {};
@@ -13,12 +13,6 @@ class SpoilerPulse : public GradPulse {
     ~SpoilerPulse () {};
     // Cloning mechanism as descibed by Gamma et al "Design patterns"
     inline SpoilerPulse* Clone() const { return (new SpoilerPulse(*this)); };
-    // Prepare the pulse with nessecary parameters.
-    //
-    // param mode. Sets the preparation mode, one of enum PrepareMode
-    //             {PREP_INIT,PREP_VERBOSE,PREP_UPDATE}.
-    // returns     Success of the preparation.
-    virtual bool Prepare  (PrepareMode mode);
     // Returns a constant Magnitude for all times.
     //
     // param time. The magnitude is requested for "time". Offset is the start time of the pulse.

@@ -154,7 +154,7 @@ void Model::RunSequenceTree (double& dTimeShift, long& lIndexShift, Module* modu
 		vector<Module*> children      = module->GetChildren();
 		bool            bCollectTPOIs = false;
 
-		//dynamic changes of ADCs
+        bool null_transverse = false;
 		for (unsigned int j=0; j<children.size() ; ++j) {
 
 			Pulse* p = (Pulse*) children[j];
@@ -172,7 +172,7 @@ void Model::RunSequenceTree (double& dTimeShift, long& lIndexShift, Module* modu
 
             // Test SpoilerPulse
             if (SpoilerPulse* dc = dynamic_cast<SpoilerPulse*>(p))
-                std::cout << "We called SpoilerPulse! :) " << typeid(dc).name() << std::endl;
+                null_transverse = true;
         }
 
 
@@ -218,7 +218,7 @@ void Model::RunSequenceTree (double& dTimeShift, long& lIndexShift, Module* modu
 			}
 
 			//if numerical error occurs in calculation, repeat the current atom with increased accuracy
-			if (!Calculate(next_tStop)) {
+            if (!Calculate(next_tStop)) {
 				//remove wrong contribution to the signal(s)
 				iadc=0;
 				for (int j=0; j < i; ++j) {
@@ -247,10 +247,14 @@ void Model::RunSequenceTree (double& dTimeShift, long& lIndexShift, Module* modu
 				lIndexShift = ladc;
 				m_accuracy_factor *= 10.0; // back to default accuracy
 				return;
-			}
+            }
 
-			if (m_world->phase < 0.0)
-				continue;	//negative receiver phase == no ADC !
+            // null transverse relaxation in case of perfect spoiling
+            if(null_transverse)
+                m_world->solution[0] = 0.0;
+
+            if (m_world->phase < 0.0)
+                continue;	//negative receiver phase == no ADC !
 
 			m_world->time  += dTimeShift;
 			m_rx_coil_array->Receive(lIndexShift++);
